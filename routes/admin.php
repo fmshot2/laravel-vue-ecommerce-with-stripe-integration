@@ -29,3 +29,4 @@ Route::group(['prefix'  =>  'admin'], function () {
         Route::get('/{id}/delete', 'Admin\CategoryController@delete')->name('admin.categories.delete');
     });
 });
+?>

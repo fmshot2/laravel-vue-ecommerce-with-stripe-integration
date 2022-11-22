@@ -1,114 +1,76 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Contracts;
 
-use App\Contracts\BaseContract;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 /**
- * Class BaseRepository
- *
- * @package \App\Repositories
+ * Interface BaseContract
+ * @package App\Contracts
  */
-class BaseRepository implements BaseContract
+interface BaseContract
 {
     /**
-     * @var Model
-     */
-    protected $model;
-
-    /**
-     * BaseRepository constructor.
-     * @param Model $model
-     */
-    public function __construct(Model $model)
-    {
-        $this->model = $model;
-    }
-
-    /**
+     * Create a model instance
      * @param array $attributes
      * @return mixed
      */
-    public function create(array $attributes)
-    {
-        return $this->model->create($attributes);
-    }
+    public function create(array $attributes);
 
     /**
+     * Update a model instance
      * @param array $attributes
      * @param int $id
-     * @return bool
+     * @return mixed
      */
-    public function update(array $attributes, int $id) : bool
-    {
-        return $this->find($id)->update($attributes);
-    }
+    public function update(array $attributes, int $id);
 
     /**
+     * Return all model rows
      * @param array $columns
      * @param string $orderBy
      * @param string $sortBy
      * @return mixed
      */
-    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'asc')
-    {
-        return $this->model->orderBy($orderBy, $sortBy)->get($columns);
-    }
+    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'desc');
 
     /**
+     * Find one by ID
      * @param int $id
      * @return mixed
      */
-    public function find(int $id)
-    {
-        return $this->model->find($id);
-    }
+    public function find(int $id);
 
     /**
+     * Find one by ID or throw exception
      * @param int $id
      * @return mixed
-     * @throws ModelNotFoundException
      */
-    public function findOneOrFail(int $id)
-    {
-        return $this->model->findOrFail($id);
-    }
+    public function findOneOrFail(int $id);
 
     /**
+     * Find based on a different column
      * @param array $data
      * @return mixed
      */
-    public function findBy(array $data)
-    {
-        return $this->model->where($data)->all();
-    }
+    public function findBy(array $data);
 
     /**
+     * Find one based on a different column
      * @param array $data
      * @return mixed
      */
-    public function findOneBy(array $data)
-    {
-        return $this->model->where($data)->first();
-    }
+    public function findOneBy(array $data);
 
     /**
+     * Find one based on a different column or through exception
      * @param array $data
      * @return mixed
-     * @throws ModelNotFoundException
      */
-    public function findOneByOrFail(array $data)
-    {
-        return $this->model->where($data)->firstOrFail();
-    }
+    public function findOneByOrFail(array $data);
 
     /**
+     * Delete one by Id
      * @param int $id
-     * @return bool
+     * @return mixed
      */
-    public function delete(int $id) : bool
-    {
-        return $this->model->find($id)->delete();
-    }
+    public function delete(int $id);
 }
