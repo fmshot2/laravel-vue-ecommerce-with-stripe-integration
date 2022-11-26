@@ -18,11 +18,11 @@ class Category extends Model
         'menu'      =>  'boolean'
     ];
 
-    // public function setNameAttribute($value)
-    // {
-    //     $this->attributes['name'] = $value;
-    //     $this->attributes['slug'] = str_slug($value);
-    // }
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
 
     public function parent()
     {
