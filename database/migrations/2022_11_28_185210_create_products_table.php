@@ -15,6 +15,26 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            // $table->unsignedInteger('brand_id')->index();
+            $table->unsignedInteger('brand_id')->references('id')->on('products');
+
+            // $table->foreign('brand_id')->references('id')->on('brands')->unsigned()->index();
+            $table->string('sku');
+            $table->string('name');
+            $table->string('slug');
+            $table->text('description')->nullable();
+            $table->unsignedInteger('quantity');
+            $table->decimal('weight', 8, 2)->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->decimal('sale_price', 8, 2)->nullable();
+            $table->boolean('status')->default(1);
+            $table->boolean('featured')->default(0);
+            // $table->integer('brand_id');
+            // $table->foreign('brand_id')->references('id')->on('brands');
+
+
+            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -28,4 +48,5 @@ class CreateProductsTable extends Migration
     {
         Schema::dropIfExists('products');
     }
+
 }
