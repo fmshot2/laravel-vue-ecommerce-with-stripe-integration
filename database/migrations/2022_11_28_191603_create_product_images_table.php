@@ -16,7 +16,7 @@ class CreateProductImagesTable extends Migration
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('product_id')->index()->references('id')->on('products')->onDelete('cascade');
-            $table->string('thumbnail')->nullable();
+            // $table->string('thumbnail')->nullable();
             $table->string('full')->nullable();
             // $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
