@@ -15,7 +15,7 @@
             <div class="tile p-0">
                 <ul class="nav flex-column nav-tabs user-tabs">
                     <li class="nav-item"><a class="nav-link active" href="#general" data-toggle="tab">General</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Imagess</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#images" data-toggle="tab">Images</a></li>
                     <li class="nav-item"><a class="nav-link" href="#attributes" data-toggle="tab">Attributes</a></li>
                 </ul>
             </div>
@@ -249,8 +249,10 @@
     <script type="text/javascript" src="{{ asset('backend/js/app.js') }}"></script>
     <script>
         Dropzone.autoDiscover = false;
+
         $( document ).ready(function() {
             $('#categories').select2();
+
             let myDropzone = new Dropzone("#dropzone", {
                 paramName: "image",
                 addRemoveLinks: false,
